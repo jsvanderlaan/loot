@@ -58,7 +58,12 @@ const LOOT_CARD_TEMPLATES: LootCardTemplate[] = [
   {
     type: "metal",
     amountOfLoot: 2,
-    amountOfCards: 6,
+    amountOfCards: 5,
+  },
+  {
+    type: "metal",
+    amountOfLoot: 3,
+    amountOfCards: 1,
   },
   {
     type: "snowthistle",
