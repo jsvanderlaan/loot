@@ -9,19 +9,38 @@ import { Utils } from "../utils";
   standalone: true,
   imports: [CommonModule, RouterOutlet],
   template: `
-    <h1>Loot</h1>
-    <ng-container *ngFor="let player of players">
-      <h2>{{ player }}</h2>
-      <button [disabled]="deck.length === 0" (click)="loot(player)">
-        Loot
-      </button>
-      <div *ngIf="lootCards(player) as lootCards">
-        <div *ngFor="let loot of lootCards">
-          {{ loot.amountOfLoot }}x {{ loot.type }}
+    <h1 class="text-3xl mb-4 text-center">Loot</h1>
+    <div
+      *ngFor="let player of players"
+      class="mb-8 flex flex-col justify-center"
+    >
+      <div *ngIf="lootCards(player) as lootCards" class="mb-4">
+        <div class="grid grid-cols-3 gap-4">
+          <div *ngFor="let loot of lootCards">
+            <div class="mx-2 my-1">
+              <img src="assets/{{ loot.type }}.svg" class="w-full mb-2" />
+              <div class="text-center font-semibold">
+                {{ loot.amountOfLoot }}x
+              </div>
+              <div class="text-center text-xs font-semibold">
+                {{ loot.type }}
+              </div>
+            </div>
+          </div>
         </div>
-        <div *ngIf="lootCards.length === 0">No loot yet...</div>
+        <div *ngIf="lootCards.length === 0" class=" ml-1 italic font-thin">
+          No loot yet...
+        </div>
       </div>
-    </ng-container>
+
+      <button
+        [disabled]="deck.length === 0"
+        (click)="loot(player)"
+        class="px-4 py-1 rounded-full shadow-sm bg-cyan-500 text-white h-full text-xl"
+      >
+        {{ player }}
+      </button>
+    </div>
   `,
 })
 export class LootComponent {

@@ -10,16 +10,48 @@ import { Utils } from "../utils";
   standalone: true,
   imports: [CommonModule, RouterOutlet],
   template: `
-    <h1>Choose loot</h1>
-    <div *ngFor="let type of types">
-      <button [disabled]="amount(type) <= 0" (click)="sub(type)">-</button>
-      {{ amount(type) }}x {{ type }}
-      <button [disabled]="amount(type) >= max(type)" (click)="add(type)">
-        +
+    <h1 class="text-3xl mb-4 text-center">Choose loot</h1>
+    <ul class="grid grid-cols-3 gap-2 mb-4">
+      <li *ngFor="let type of types" class="p-2 rounded">
+        <div class="mx-2 my-1">
+          <button
+            class="disabled:opacity-20 w-full"
+            [disabled]="amount(type) >= max(type)"
+            (click)="add(type)"
+          >
+            <img src="assets/{{ type }}.svg" class="w-full" />
+          </button>
+        </div>
+        <div class="flex flex-row">
+          <div class="text-center font-semibold mr-4 grow">
+            {{ amount(type) || "-" }}
+          </div>
+          <button
+            [disabled]="amount(type) <= 0"
+            (click)="sub(type)"
+            class=" px-2  disabled:opacity-20 "
+          >
+            <img src="assets/trash.svg" class="w-4" />
+          </button>
+        </div>
+      </li>
+    </ul>
+    <div>
+      <button
+        type="button"
+        (click)="reset()"
+        class="mr-4 px-4 py-1 rounded-full shadow-sm bg-slate-400 text-white"
+      >
+        Reset
+      </button>
+      <button
+        type="button"
+        (click)="done()"
+        class="px-4 py-1 rounded-full shadow-sm bg-cyan-500 text-white"
+      >
+        Done
       </button>
     </div>
-    <button (click)="reset()">Reset</button>
-    <button (click)="done()">Done</button>
   `,
 })
 export class DeckComponent {

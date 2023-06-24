@@ -11,7 +11,7 @@ export const LOOT_TYPES: Loot[] = [
   "flamefruit",
   "arrowvine",
   "corpsecap",
-  "random-item",
+  "random_item",
 ];
 
 const LOOT_CARD_TEMPLATES: LootCardTemplate[] = [
@@ -96,7 +96,7 @@ const LOOT_CARD_TEMPLATES: LootCardTemplate[] = [
     amountOfCards: 2,
   },
   {
-    type: "random-item",
+    type: "random_item",
     amountOfLoot: 1,
     amountOfCards: 1,
   },

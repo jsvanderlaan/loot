@@ -9,7 +9,7 @@ export type Loot =
   | "flamefruit"
   | "arrowvine"
   | "corpsecap"
-  | "random-item";
+  | "random_item";
 
 export interface LootCardTemplate extends LootCard {
   amountOfCards: number;

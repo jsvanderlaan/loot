@@ -1,21 +1,49 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterOutlet } from "@angular/router";
 import { StateService } from "../state.service";
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterOutlet, ReactiveFormsModule],
+  imports: [CommonModule, RouterOutlet, ReactiveFormsModule, FormsModule],
   template: `
-    <h1>Choose players</h1>
-    <div>
-      <button (click)="reset()">Reset</button>
-      <button (click)="done()">Done</button>
+    <h1 class="text-3xl mb-8 text-center">Choose players</h1>
+    <form class="mb-4" (submit)="add()">
+      <input
+        type="text"
+        [formControl]="playerControl"
+        class="rounded px-4 py-1 mr-4"
+      />
+      <button
+        type="submit"
+        class="px-4 py-1 rounded-full shadow-sm bg-cyan-500 text-white"
+      >
+        Add
+      </button>
+    </form>
+    <ol class="mb-4 list-decimal list-inside">
+      <li *ngFor="let player of players" class="text-lg">{{ player }}</li>
+    </ol>
+    <div *ngIf="players.length === 0" class="mb-4 ml-1 italic font-thin">
+      Nobody here...
     </div>
-    <div *ngFor="let player of players">{{ player }}</div>
-    <input type="text" [formControl]="playerControl" />
-    <button (click)="add()">Add</button>
+    <div>
+      <button
+        type="button"
+        (click)="reset()"
+        class="mr-4 px-4 py-1 rounded-full shadow-sm bg-slate-400 text-white"
+      >
+        Reset
+      </button>
+      <button
+        type="button"
+        (click)="done()"
+        class="px-4 py-1 rounded-full shadow-sm bg-cyan-500 text-white"
+      >
+        Done
+      </button>
+    </div>
   `,
 })
 export class PlayerComponent {
@@ -43,6 +71,9 @@ export class PlayerComponent {
   }
 
   done(): void {
+    if (this.players.length === 0) {
+      return;
+    }
     this._state.setPlayers(this.players);
     this._router.navigate(["deck"]);
   }
