@@ -32,7 +32,7 @@ import { StateService } from "../state.service";
       <button
         type="button"
         (click)="reset()"
-        class="mr-4 px-4 py-1 rounded-full shadow-sm bg-slate-400 text-white"
+        class="mr-2 px-4 py-1 rounded-full shadow-sm bg-slate-400 text-white"
       >
         Reset
       </button>

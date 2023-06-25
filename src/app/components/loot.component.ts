@@ -19,10 +19,8 @@ import { Utils } from "../utils";
           <div *ngFor="let loot of lootCards">
             <div class="mx-2 my-1">
               <img src="assets/{{ loot.type }}.svg" class="w-full mb-2" />
-              <div class="text-center font-semibold">
-                {{ loot.amountOfLoot }}x
-              </div>
-              <div class="text-center text-xs font-semibold">
+              <div class="text-center">{{ loot.amountOfLoot }}x</div>
+              <div class="text-center text-xs">
                 {{ loot.type }}
               </div>
             </div>

@@ -23,7 +23,7 @@ import { Utils } from "../utils";
           </button>
         </div>
         <div class="flex flex-row">
-          <div class="text-center font-semibold mr-4 grow">
+          <div class="text-center mr-4 grow">
             {{ amount(type) || "-" }}
           </div>
           <button
@@ -40,7 +40,7 @@ import { Utils } from "../utils";
       <button
         type="button"
         (click)="reset()"
-        class="mr-4 px-4 py-1 rounded-full shadow-sm bg-slate-400 text-white"
+        class="mr-2 px-4 py-1 rounded-full shadow-sm bg-slate-400 text-white"
       >
         Reset
       </button>
