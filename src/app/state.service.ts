@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { LocalStorageKey, LootCard } from "./types";
+import { LocalStorageKey, LootCard, LootState } from "./types";
 
 @Injectable({
   providedIn: "root",
@@ -10,13 +10,21 @@ export class StateService {
   }
   setPlayers(players: string[]): void {
     this._setItem("players", players);
-    this._setItem("deck", []);
+    this._removeItem("deck");
+    this._removeItem("loot");
   }
   deck(): LootCard[] | null {
     return this._getItem<LootCard[]>("deck");
   }
   setDeck(deck: LootCard[]): void {
     this._setItem("deck", deck);
+    this._removeItem("loot");
+  }
+  loot(): LootState | null {
+    return this._getItem<LootState>("loot");
+  }
+  setLoot(lootState: LootState | null): void {
+    this._setItem("loot", lootState);
   }
 
   private _getItem<T>(key: LocalStorageKey): T | null {
@@ -29,5 +37,9 @@ export class StateService {
 
   private _setItem<T>(key: LocalStorageKey, item: T): void {
     localStorage.setItem(key, JSON.stringify(item));
+  }
+
+  private _removeItem(key: LocalStorageKey): void {
+    localStorage.removeItem(key);
   }
 }

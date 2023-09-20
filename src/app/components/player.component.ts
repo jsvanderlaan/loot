@@ -13,7 +13,8 @@ import { StateService } from "../state.service";
       <input
         type="text"
         [formControl]="playerControl"
-        class="rounded px-4 py-1 mr-4"
+        placeholder="player name"
+        class="rounded px-4 py-1 mr-4 caret-cyan-500 focus:ring-2 focus:ring-cyan-500 focus:outline-none"
       />
       <button
         type="submit"

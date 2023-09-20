@@ -1,6 +1,7 @@
 import { Loot, LootCard, LootCardTemplate } from "./types";
 
 export const LOOT_TYPES: Loot[] = [
+  "gold_special",
   "gold",
   "lumber",
   "hide",
@@ -15,6 +16,11 @@ export const LOOT_TYPES: Loot[] = [
 ];
 
 const LOOT_CARD_TEMPLATES: LootCardTemplate[] = [
+  {
+    type: "gold_special",
+    amountOfLoot: 1,
+    amountOfCards: 1,
+  },
   {
     type: "gold",
     amountOfLoot: 1,

@@ -29,12 +29,18 @@ import { Utils } from "../utils";
         <div *ngIf="lootCards.length === 0" class=" ml-1 italic font-thin">
           No loot yet...
         </div>
+        <div
+          *ngIf="deck.length === 0"
+          class=" ml-1 italic font-thin text-red-400"
+        >
+          Loot deck is empty.
+        </div>
       </div>
 
       <button
         [disabled]="deck.length === 0"
         (click)="loot(player)"
-        class="px-4 py-1 rounded-full shadow-sm bg-cyan-500 text-white h-full text-xl"
+        class="px-4 py-1 rounded-full shadow-sm bg-cyan-500 text-white h-full text-xl disabled:opacity-30"
       >
         {{ player }}
       </button>
@@ -46,10 +52,12 @@ export class LootComponent {
   readonly players: string[];
   playerLoot: Map<string, LootCard[]>;
 
-  constructor(_state: StateService) {
+  constructor(private readonly _state: StateService) {
     this.players = _state.players();
-    this.deck = Utils.shuffle(_state.deck() ?? []);
-    this.playerLoot = new Map([]);
+    const savedLoot = _state.loot();
+    this.deck = savedLoot?.deck ?? Utils.shuffle(_state.deck() ?? []);
+    this.playerLoot =
+      savedLoot !== null ? this._fromObject(savedLoot.playerLoot) : new Map([]);
   }
 
   lootCards(player: string): LootCard[] {
@@ -62,5 +70,18 @@ export class LootComponent {
     }
     const loot = this.deck.shift() as LootCard;
     this.playerLoot.set(player, [...(this.playerLoot.get(player) ?? []), loot]);
+    this._state.setLoot({
+      deck: this.deck,
+      playerLoot: this._toObject(this.playerLoot),
+    });
+  }
+
+  private _toObject(map: Map<string, LootCard[]>): Record<string, LootCard[]> {
+    return Object.fromEntries(map.entries());
+  }
+  private _fromObject(
+    obj: Record<string, LootCard[]>
+  ): Map<string, LootCard[]> {
+    return new Map(Object.entries(obj));
   }
 }

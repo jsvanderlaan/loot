@@ -1,4 +1,5 @@
 export type Loot =
+  | "gold_special"
   | "gold"
   | "lumber"
   | "hide"
@@ -20,4 +21,9 @@ export interface LootCard {
   amountOfLoot: number;
 }
 
-export type LocalStorageKey = "players" | "deck";
+export type LocalStorageKey = "players" | "deck" | "loot";
+
+export interface LootState {
+  deck: LootCard[];
+  playerLoot: Record<string, LootCard[]>;
+}
