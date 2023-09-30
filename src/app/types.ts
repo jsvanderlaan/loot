@@ -1,29 +1,30 @@
 export type Loot =
-  | "gold_special"
-  | "gold"
-  | "lumber"
-  | "hide"
-  | "metal"
-  | "snowthistle"
-  | "rockroot"
-  | "axenut"
-  | "flamefruit"
-  | "arrowvine"
-  | "corpsecap"
-  | "random_item";
+    | 'gold_1418'
+    | 'gold_1419'
+    | 'gold'
+    | 'lumber'
+    | 'metal'
+    | 'hide'
+    | 'snowthistle'
+    | 'rockroot'
+    | 'axenut'
+    | 'flamefruit'
+    | 'arrowvine'
+    | 'corpsecap'
+    | 'random_item';
 
 export interface LootCardTemplate extends LootCard {
-  amountOfCards: number;
+    amountOfCards: number;
 }
 
 export interface LootCard {
-  type: Loot;
-  amountOfLoot: number;
+    type: Loot;
+    amountOfLoot: number;
 }
 
-export type LocalStorageKey = "players" | "deck" | "loot";
+export type LocalStorageKey = 'players' | 'deck' | 'loot' | 'gold_1418' | 'gold_1419';
 
 export interface LootState {
-  deck: LootCard[];
-  playerLoot: Record<string, LootCard[]>;
+    deck: LootCard[];
+    playerLoot: Record<string, LootCard[]>;
 }
