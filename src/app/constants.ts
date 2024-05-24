@@ -90,7 +90,12 @@ const LOOT_CARD_TEMPLATES: LootCardTemplate[] = [
     {
         type: 'axenut',
         amountOfLoot: 1,
-        amountOfCards: 2,
+        amountOfCards: 1,
+    },
+    {
+        type: 'axenut',
+        amountOfLoot: 2,
+        amountOfCards: 1,
     },
     {
         type: 'flamefruit',
