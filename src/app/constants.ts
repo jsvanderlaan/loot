@@ -45,12 +45,12 @@ const LOOT_CARD_TEMPLATES: LootCardTemplate[] = [
     {
         type: 'lumber',
         amountOfLoot: 1,
-        amountOfCards: 2,
+        amountOfCards: 1,
     },
     {
         type: 'lumber',
         amountOfLoot: 2,
-        amountOfCards: 6,
+        amountOfCards: 7,
     },
     {
         type: 'hide',
